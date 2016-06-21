@@ -1,0 +1,28 @@
+﻿
+@{
+    
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+<h2>BMI Charts</h2>
+
+<div>
+    <img src="~/pictures/chart%20(1).png"  width="980" height="800"/>
+</div>

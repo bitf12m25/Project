@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/ _MainPageAdmn.cshtml";
+   
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+<h2>Fan Club of .....</h2>
+
+
+

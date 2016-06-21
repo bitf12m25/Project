@@ -1,0 +1,30 @@
+﻿@model PU.Recipe.Models.UserModel
+
+<div>
+    <h4>Profile Information </h4>
+	<hr />
+    </div>
+
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.UserName) :
+    @Html.DisplayFor(m => m.UserName)
+<p />
+
+<p class="fieldLabel">
+    @Html.LabelFor(m=>m.FName) :
+    @Html.DisplayFor(m=>m.FName)
+    <p/>
+
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.LName) :
+    @Html.DisplayFor(m => m.LName)
+<p />
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.UserID) :
+    @Html.DisplayFor(m => m.UserID)
+<p />
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

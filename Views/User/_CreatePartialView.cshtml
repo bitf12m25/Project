@@ -1,0 +1,42 @@
+﻿@model PU.Recipe.Models.UserModel
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+<link href="~/Content/main.css" rel="stylesheet" />
+<h2>Create User</h2>
+
+
+@using (Html.BeginForm("CreateUser", "User", FormMethod.Post, new {   enctype = "multipart/form-data", id="createForm"}))
+{
+    <fieldset>
+        <legend> Create New User </legend>
+        <p class="fieldLabel">
+            User Name
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:300px" })
+        </p>
+        <p class="fieldLabel">
+            Password
+        </p>
+        <p class="fieldControl">
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:300px" })
+        </p>
+
+        <p class="fieldLabel">
+            Enter your First Name
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.FName, new { @class = "textbox", style = "width:300px" })
+        </p>
+        <p class="fieldLabel">
+            Enter your Last Name
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.LName, new { @class = "textbox", style = "width:300px" })
+        </p>
+        <input type="submit" value="Create a User" class="button1" />
+    </fieldset>
+}

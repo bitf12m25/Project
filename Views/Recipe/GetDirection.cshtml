@@ -1,0 +1,36 @@
+﻿@using PU.Recipe.Models;
+@model IEnumerable<PU.Recipe.Models.DirectionModel> 
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetDirection</title>
+</head>
+<body>
+    <div>
+        <h4>DirectionModel</h4>
+    	<hr />
+        @foreach (var item in Model)
+{
+
+
+    <p>
+        @item.DirectionName
+    </p>
+
+
+
+}
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

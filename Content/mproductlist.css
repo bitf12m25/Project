@@ -1,0 +1,108 @@
+﻿.mpListWraper {
+   width:980px;
+   background-color:gray;
+}
+
+.mpCaptionRow {
+    padding:5px;
+    width:970px;
+    background-color:#3fd115;
+    float:left;
+    color:#ffffff;
+}
+.mpHeaderRow {
+    width: 980px;
+    background-color: #CC3300;
+    float: left;
+    color: #ffffff;
+    margin-top:1px;
+}
+
+.mpDataRow {
+    width: 980px;
+    background-color: #CCFFCC;
+    float: left;
+    margin-top:1px;
+}
+
+.mpAlternateDataRow {
+    width: 980px;
+    background-color: #FFFFD7;
+    float: left;
+    margin-top:1px;
+}
+
+.mpSelectedRow {
+    background-color: #FF9900;
+    color: #FFFFFF;
+    cursor:pointer;
+}
+
+.mpImageCol {
+    width:260px;
+    padding:5px;
+    /*background-color:magenta;*/
+    float:left;
+    margin-right:1px;
+}
+
+.mpImageIcon {
+    width:250px;
+    height:250px;
+}
+
+.mpThumbnailWraper {
+            padding: 5px;
+            width: 90px;
+            height: 90px;
+            border: 1px solid #e0dbdb;
+            float: left;
+        }
+
+.mpImageThumbnail {
+            width: 90px;
+            height: 90px;
+}
+
+
+
+.mpNameCol {
+    width:190px;
+    padding:5px;
+    /*background-color:black;*/
+    float:left;
+    word-break: break-all;
+    margin-right:1px;
+}
+.mpDescriptionCol {
+    width:390px;
+    padding:5px;
+    /*background-color:navy;*/
+    float:left;
+    margin-right:1px;
+    word-break: break-all;
+}
+.mpImageActions {
+    width:100px;
+    padding:5px;
+    /*background-color:red;*/
+    float:left;
+}
+
+.mpCreateLink{
+    color:#ffffff;
+}
+
+.mpDetailsLink{
+
+}
+
+
+.mpEditLink{
+
+}
+
+.mpDeleteLink{
+
+}
+

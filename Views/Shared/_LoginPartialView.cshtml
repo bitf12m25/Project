@@ -1,0 +1,34 @@
+﻿@model PU.Recipe.Models.UserModel
+
+<!--Login -->
+<div class="loginStatusSection">
+    <a id="loginLink" class="loginLink" href="#">Login</a>
+</div>
+
+
+<div id="loginSection" class="loginSection">
+
+@using (Html.BeginForm("LogIng", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "loginForm" }))
+{
+    <p> Partial view</p>
+     <p class="loginFieldControl">
+            Login Id:
+        </p>
+        <p class="loginFieldControl">
+           @* <input id="loginId" type="text" class="textbox" style="width: 180px" />*@
+            @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:180px" })
+        </p>
+        <p class="loginFieldControl">
+            Password:
+        </p>
+        <p class="loginFieldControl">
+         @*   <input id="password" type="password" class="textbox" style="width: 180px" />*@
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:180px" })
+        </p>
+        <p class="loginButtonWraper">
+           
+            <input type="submit" value="Login" class="loginButton" />
+        </p>
+}
+   
+</div>

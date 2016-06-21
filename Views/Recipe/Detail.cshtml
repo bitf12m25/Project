@@ -1,0 +1,172 @@
+﻿@model PU.Recipe.Models.RecipeDetailsModel
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@{
+  
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+
+    <div style=" width:670px; float:left">
+         <div style="width:690px;" class="text-info text-center"  >
+        
+            
+                  <h3> @Model.RecipeName</h3>  
+        </div>
+
+        <div class="mpDescriptionCol text-success" style="padding:15px; text-align:center; margin:15px;">
+            @Model.Discription
+           
+
+        </div>
+    </div>
+
+
+    <div style="width:300px; float:left">
+         <div class="mpImageCol">
+    @if (!string.IsNullOrEmpty(Model.RecipeImageUrl))
+    {
+        <img src='@Url.Content(@Model.RecipeImageUrl)' alt="image" class="mpImageIcon"  width="260" height="260"/>
+    }
+        </div>
+   </div>
+<hr />
+
+
+<div style="clear:both;"></div>
+
+<div>
+
+
+    <div style=" width:280px; color:red; margin:auto; float:left;">
+        <form action="@Url.Action("InsertFavList", "Recipe")" method="post">
+            <p class="loginFieldControl">
+               
+                
+                <input type="hidden" value=@Model.RecipeID name="rid" id="rid" />
+                
+                
+                <input type="submit" value="Add favorites list" class="loginButton" style="margin-left:20px" />
+
+
+            </p>
+
+
+        </form>
+    </div>
+
+
+    <div style=" width:480px; color:red; margin:auto; float:left;">
+        <form action="@Url.Action("InsertComments", "Recipe")" method="post">
+            <p class="loginFieldControl">
+                @*  <input type="text" name="Rate" class="textbox" style="width: 180px" />*@
+                <input type="text" name="Comments" class="textbox" style="width: 280px" placeholder=" Write a Comment" required />
+                <input type="hidden" value=@Model.RecipeID name="rid" id="rid" />
+                <b>Rate</b>
+                <select name="Rate" class="textbox">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" value="submit" class="loginButton" style="margin-left:20px" />
+
+
+            </p>
+
+
+        </form>
+    </div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+<h3>Ingredients</h3>
+
+    @if (Model.IngradieantList != null)
+    {
+        <ul class="list-group">
+            @foreach (var item in Model.IngradieantList)
+            {
+                <li class="list-group-item list-group-item-warning glyphicon glyphicon-plus active" style=" width: 980px; background-color: #F0F0F0; color:black;">
+                    @item.ingreName
+                </li>
+            }
+        </ul>
+    }
+    
+
+
+<h3>Directions </h3>
+<hr />
+@if (Model.DisrectionList != null)
+{
+    <ol class="list-group" style=" font: italic 1em Georgia, Times, serif;
+  color: #999999;">
+
+        @foreach (var item1 in Model.DisrectionList)
+        {
+            <li class="list-group-item list-group-item-warning  active" style=" width: 980px; background-color: #F0F0F0; color:black;">
+                @item1.DirectionName
+            </li>
+        }
+    </ol>
+
+}
+ 
+
+@if (Model.commentsList != null)
+{ 
+    <ul>
+   
+           @foreach (var item in Model.commentsList)
+       {
+               
+               
+           <li>
+               
+               <div style="color:blue; font-size:larger;">@item.fName </div>
+               <div>
+                   @for (int i = 0; i <item.rate ; i++)
+                   {
+                       
+<img src="~/pictures/RecipePic/star.png"  width="20" height="20" />
+                   }
+               </div>
+              <div style=" background-color:gray">@item.coments </div>
+               
+            <hr  style="color:darkgray"/>
+           </li>
+               
+
+       
+   
+
+
+}
+       </ul>
+
+}
+
+
+    

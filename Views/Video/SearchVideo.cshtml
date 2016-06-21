@@ -1,0 +1,170 @@
+﻿@using PU.Recipe.Models
+@model IEnumerable<PU.Recipe.Models.VideoModel>
+
+
+
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+<link href="~/Content/mproductlist.css" rel="stylesheet" />
+<link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/RecipeRow.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#createLink").click(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    url: "/manageproducts/create",
+                    success: function (result) {
+                        $("#createDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#createDialog").dialog(
+                {
+                    title: "Create Product",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "left top",
+                        at: "right bottom",
+                        of: "#createLink"
+                    }
+                }
+            );
+
+
+        });
+
+        $(".mpDetailsLink").click(function (event) {
+            event.preventDefault();
+            var dLnk = $(this);
+            var myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl,
+                    success: function (result) {
+                        $("#detailsDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#detailsDialog").dialog(
+                {
+                    title: "Product Details",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "right top",
+                        at: "left bottom",
+                        of: dLnk
+                    }
+                }
+            );
+
+
+        });
+
+
+
+        $("#loginSection").hide();
+        $("#loginLink").click(function (event) {
+            event.preventDefault();
+            $("#loginSection").slideToggle(1000);
+        });
+
+        $(".textbox").blur(function () {
+            if ($(this).val() == 0) {
+                $(this).addClass("textboxError");
+            }
+            else {
+                $(this).removeClass("textboxError");
+            }
+        });
+
+        $("#loginForm").submit(function () {
+            var result = true;
+            if ($("#loginId").val() == 0) {
+                $("#loginId").addClass("textboxError");
+                result = false;
+            }
+            if ($("#password").val() == 0) {
+                $("#password").addClass("textboxError");
+                result = false;
+            }
+            return result;
+        });
+
+
+
+        $(".mpDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+
+        $(".mpAlternateDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+    });
+</script>
+
+<div style="float:left; width:480px; color:red;margin-left:300px; margin-top:50px;">
+    <form action="@Url.Action("SearchVideo", "Video")" method="post">
+        <p class="loginFieldControl">
+            <input type="text" name="qqq" class="textbox" style="width: 180px" />
+            <input type="submit" value="submit" class="loginButton" style="margin-left:20px" />
+        </p>
+
+
+    </form>
+</div>
+
+<div style="clear:both;"></div>
+
+@if (Model != null) 
+{
+foreach (var item in Model)
+{
+ 
+
+    <div style="width:980px; margin:auto;">
+        <div style="width: 460px; float: left; padding: 20px;">
+            <embed width="400" height="200" src='@Url.Content(@item.URL)' />
+            <p style="text-align:center" class="text-info">@item.name</p>
+        </div>
+
+    </div>
+}
+
+
+}
+
+<div style="clear:both;"></div>
+
+
+

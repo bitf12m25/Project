@@ -1,0 +1,49 @@
+﻿@model PU.Recipe.Models.UserModel
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+<div>
+    <h4>Profile Information </h4>
+    <hr />
+</div>
+
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.UserName) :
+    @Html.DisplayFor(m => m.UserName)
+<p />
+
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.FName) :
+    @Html.DisplayFor(m => m.FName)
+<p />
+
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.LName) :
+    @Html.DisplayFor(m => m.LName)
+<p />
+<p class="fieldLabel">
+    @Html.LabelFor(m => m.UserID) :
+    @Html.DisplayFor(m => m.UserID)
+<p />
+
+<p>
+    @* @Html.ActionLink("Update", "Update", new { /* id = Model.PrimaryKey */ }) |*@
+
+</p>

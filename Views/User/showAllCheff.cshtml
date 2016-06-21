@@ -1,0 +1,34 @@
+﻿@using PU.Recipe.Models
+@model List<PU.Recipe.Models.UserModel>
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+<h2>showAllCheff</h2>
+
+<div>
+    @foreach (var item in Model)
+    {
+        @item.Role <br />
+        @item.FName
+    }
+    </div>

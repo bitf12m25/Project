@@ -1,0 +1,196 @@
+﻿@model PU.Recipe.Models.UserModel
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+
+
+<h2>Log In </h2>
+
+<link href="~/Content/main.css" rel="stylesheet" />
+
+
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/mproductlist.css" rel="stylesheet" />
+<link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+
+            $("#createLink").click(function (event) {
+                event.preventDefault();
+                $.ajax(
+                    {
+                        url: "/User/CreateUser",
+                        success: function (result) {
+                            $("#createDialog").html(result);
+                        },
+                        failure: function () {
+                        }
+                    }
+                );
+                $("#createDialog").dialog(
+                    {
+                        title: " Create a New user ",
+                        modal: true,
+                        width: 600,
+                        position:
+                        {
+                            my: "left top",
+                            at: "right bottom",
+                            of: "#createLink"
+                        }
+                    }
+                );
+
+
+            });
+
+            $(".mpDetailsLink").click(function (event) {
+                event.preventDefault();
+                var dLnk = $(this);
+                var myurl = $(this).attr("href");
+                $.ajax(
+                    {
+                        url: myurl,
+                        success: function (result) {
+                            $("#detailsDialog").html(result);
+                        },
+                        failure: function () {
+                        }
+                    }
+                );
+                $("#detailsDialog").dialog(
+                    {
+                        title: "Profile Information",
+                        modal: true,
+                        width: 600,
+                        position:
+                        {
+                            my: "right top",
+                            at: "left bottom",
+                            of: dLnk
+                        }
+                    }
+                );
+
+
+            });
+
+
+
+            $("#loginSection").hide();
+            $("#loginLink").click(function (event) {
+                event.preventDefault();
+                $("#loginSection").slideToggle(1000);
+            });
+
+            $(".textbox").blur(function () {
+                if ($(this).val() == 0) {
+                    $(this).addClass("textboxError");
+                }
+                else {
+                    $(this).removeClass("textboxError");
+                }
+            });
+
+            $("#loginForm").submit(function () {
+                var result = true;
+                if ($("#loginId").val() == 0) {
+                    $("#loginId").addClass("textboxError");
+                    result = false;
+                }
+                if ($("#password").val() == 0) {
+                    $("#password").addClass("textboxError");
+                    result = false;
+                }
+                return result;
+            });
+
+
+
+            $(".mpDataRow").hover(function () {
+                $(this).toggleClass("mpSelectedRow");
+            });
+
+            $(".mpAlternateDataRow").hover(function () {
+                $(this).toggleClass("mpSelectedRow");
+            });
+        });
+    </script>
+}
+
+
+
+
+@*  *@
+
+<div style="background-color:lightblue; width:400px;margin:auto">@ViewBag.messag | 
+    
+    @Html.ActionLink(" View Profile", "ShowProfile", new { id = @ViewBag.id }, new { @class = "mpDetailsLink" }) |
+    @Html.ActionLink(" Update User", "#", new { id = @ViewBag.id }, new { @class = "mpDetailsLink" }) |
+
+    </div>
+
+
+<div class="mpCaptionRow">
+     [ @Html.ActionLink("User Registration", "CreateUser", null, new { @class = "mpCreateLink", id = "createLink" }) ]
+</div>
+
+
+
+@*@using (Html.BeginForm("LogIng", "User", FormMethod.Post, new { }))
+{
+    <fieldset
+        <legend> Log In </legend>
+        <p class="fieldLabel">
+            User Name
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:300px" })
+        </p>
+        <p class="fieldLabel">
+            Password
+        </p>
+        <p class="fieldControl">
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:300px" })
+        </p>
+
+       
+        <input type="submit" value="Create a User" class="button1" />
+    </fieldset>
+}*@
+
+
+
+
+
+
+<div id="createDialog" class="dialogSec">
+</div>
+
+<div id="detailsDialog" class="dialogSec">
+</div>

@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <style>   .box {background:#20abff; color:#fff; width:50%; margin: 5px; float:left;}
+    .left {float:left;}
+    .right {float:right;}
+    .container {width:205px;}
+   </style>
+  
+</head>
+<body>
+    <div class="container">
+        <div class="box left" style="height:60px;">1</div>
+        <div class="box left" style="height:80px;">2</div>
+        <div class="box left" style="height:30px;">3</div>
+        <div class="box left" style="height:70px;">4</div>
+        <div class="box left" style="height:60px;">5</div>
+        <div class="box left" style="height:20px;">6</div>
+        <div class="box left" style="height:40px;">7</div>
+        <div class="box left" style="height:90px;">8</div>
+        <div class="box left" style="height:30px;">9</div>
+    </div>
+    <div> 
+    </div>
+    @Html.Partial("_Search")
+</body>
+</html>

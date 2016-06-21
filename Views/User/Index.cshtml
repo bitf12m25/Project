@@ -1,0 +1,214 @@
+﻿@model PU.Recipe.Models.UserModel
+
+@{
+    ViewBag.Title = "Index";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+    
+}
+
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/mproductlist.css" rel="stylesheet" />
+<link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+
+            $("#createLink").click(function (event) {
+                event.preventDefault();
+                $.ajax(
+                    {
+                        url: "/manageproducts/create",
+                        success: function (result) {
+                            $("#createDialog").html(result);
+                        },
+                        failure: function () {
+                        }
+                    }
+                );
+                $("#createDialog").dialog(
+                    {
+                        title: "Create Product",
+                        modal: true,
+                        width: 600,
+                        position:
+                        {
+                            my: "left top",
+                            at: "right bottom",
+                            of: "#createLink"
+                        }
+                    }
+                );
+
+
+            });
+
+            $(".mpDetailsLink").click(function (event) {
+                event.preventDefault();
+                var dLnk = $(this);
+                var myurl = $(this).attr("href");
+                $.ajax(
+                    {
+                        url: myurl,
+                        success: function (result) {
+                            $("#detailsDialog").html(result);
+                        },
+                        failure: function () {
+                        }
+                    }
+                );
+                $("#detailsDialog").dialog(
+                    {
+                        title: "Product Details",
+                        modal: true,
+                        width: 600,
+                        position:
+                        {
+                            my: "right top",
+                            at: "left bottom",
+                            of: dLnk
+                        }
+                    }
+                );
+
+
+            });
+
+
+
+            $("#loginSection").hide();
+            $("#loginLink").click(function (event) {
+                event.preventDefault();
+                $("#loginSection").slideToggle(1000);
+            });
+
+            $(".textbox").blur(function () {
+                if ($(this).val() == 0) {
+                    $(this).addClass("textboxError");
+                }
+                else {
+                    $(this).removeClass("textboxError");
+                }
+            });
+
+            $("#loginForm").submit(function () {
+                var result = true;
+                if ($("#loginId").val() == 0) {
+                    $("#loginId").addClass("textboxError");
+                    result = false;
+                }
+                if ($("#password").val() == 0) {
+                    $("#password").addClass("textboxError");
+                    result = false;
+                }
+                return result;
+            });
+
+
+
+            $(".mpDataRow").hover(function () {
+                $(this).toggleClass("mpSelectedRow");
+            });
+
+            $(".mpAlternateDataRow").hover(function () {
+                $(this).toggleClass("mpSelectedRow");
+            });
+        });
+    </script>
+}
+
+@*@Html.Partial("_LoginPartialView")*@
+
+
+<div class="Wellcome">
+    <h1 class="lead" style="text-align:center;"> WELCOME @ViewBag.messag !</h1>
+    
+    Recipe Book is famous Website of world . Here at Recipe Book  you will find thousands of free Pakistani Recipes, Indian Recipes and cooking videos from famous Pakistani Recipes Cooking Shows. Also specialized regional, South Indian, North Indian Middle Eastern and Arabian premium food recipes both in English and Urdu.
+    Recipe Book .com is the quick and easy way to search for Pakistani recipes, and cooking videos from cooking shows of your choice. We have got ideas for everyday family meals and inspirational Pakistani food for special occasions.
+
+    </div>  
+
+
+<hr />
+@*<div class="cookingRow">
+    <div class="cookingRowLeft">
+        <div style="margin-top:10px;width:280px;" class="text-danger"> <h1> All </h1></div>
+        <div style="width:280px;" class="text-info"><h1> Recipe </h1></div>
+        <div style="margin-top:30px;width:280px;margin:auto;">
+
+            <img src="~/pictures/page1-img1.jpg" width="280" height="200" class="img-thumbnail" />
+        </div>
+        <div style="margin-top:10px;width:280px; height:100px; text-align:center"> CLICK HERE FOR MORE INFO ABOUT THIS FREE TEMPLATE CREATED BY TEMPLATEMONSTER.COM TEAM.</div>
+        <div style="margin-top:10px;width:120px; margin:auto;">
+            <input type="button" value="Read More" class="btn btn-danger btn-lg" />
+        </div>
+
+    </div>
+    <div class="cookingRowMiddle">
+
+        <div style="margin-top:10px;width:280px;" class="text-danger"> <h1>All </h1></div>
+        <div style="width:280px;" class="text-info"><h1> Video </h1></div>
+        <div style="margin-top:30px;width:280px;margin:auto;">
+
+            <img src="~/pictures/page1-img1.jpg" width="280" height="200" class="img-thumbnail" />
+        </div>
+        <div style="margin-top:10px;width:280px; height:100px; text-align:center"> CLICK HERE FOR MORE INFO ABOUT THIS FREE TEMPLATE CREATED BY TEMPLATEMONSTER.COM TEAM.</div>
+        <div style="margin-top:10px;width:120px; margin:auto;">
+            <input type="button" value="Read More" class="btn btn-danger btn-lg" />
+        </div>
+
+    </div>
+    <div class="cookingRowRight">
+
+        <div style="margin-top:10px;width:280px;" class="text-danger"> <h1>Fan </h1></div>
+        <div style="width:280px;" class="text-info"><h1> Club </h1></div>
+        <div style="margin-top:30px;width:280px;margin:auto;">
+
+            <img src="~/pictures/page1-img1.jpg" width="280" height="200" class="img-thumbnail" />
+        </div>
+        <div style="margin-top:10px;width:280px; height:100px; text-align:center"> CLICK HERE FOR MORE INFO ABOUT THIS FREE TEMPLATE CREATED BY TEMPLATEMONSTER.COM TEAM.</div>
+        <div style="margin-top:10px;width:120px; margin:auto;">
+            <input type="button" value="Read More" class="btn btn-danger btn-lg" />
+        </div>
+
+    </div>
+
+
+    @*<div class="PopulerRow">
+                            <div class="PopulerLeftCol">
+                                <pre>
+                                    LIGHTER COOKING
+        AT VERO EOS ET ACCUSAM ETUSTO DOLORES ET EA REBUM.
+        PUDDING
+        DUIS AUTEM VEL EUM IRIURE DOLOR IN HENDRERIT.
+        BLACK BEAN SALSA
+        MOLESTIE CONSEQUAT, VEL ILLUM DOLORE EU FEUGIAT.
+        ASPARAGUS
+        VULPUTATE VELIT ESSE MOLESTIE CONSEQUAT
+                                </pre>
+                            </div>
+                            <div class="PopulerLeftCol">
+                                <h1>PROFESSIONAL PROGRAMS</h1>
+                                <div class="text-success">
+                                    LOREM IPSUM DOLOR SIT AMET, CONSETETUR SADIPSCING ELITR, SED DIAM NONUMY EIRMOD TEMPOR INVIDUNT UT LABORE ET DOLORE MAGNA ALIQUYM ERAT, SED DIAM VOLUPTUA AT VERO EOS.
+                                </div> </div>
+                        </div>*@
+    <div style="clear:both"></div>
+   

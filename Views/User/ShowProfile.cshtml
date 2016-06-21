@@ -1,0 +1,56 @@
+﻿@model PU.Recipe.Models.UserModel
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<div style="margin:auto; margin-top:40px; text-align:center;width:400px; ">
+   
+    
+</div>
+
+<fieldset>
+
+    <legend> Profile Information</legend>
+   
+    <p class="fieldLabel">
+      @*  @Html.LabelFor(m => m.UserName) :*@
+       <b class=" text-danger "> User Name  : </b>
+        @Html.DisplayFor(m => m.UserName)
+    <p />
+    <hr />
+    <p class="fieldLabel">
+       @* @Html.LabelFor(m => m.FName) :*@
+        <b class=" text-danger "> User First Name  : </b>
+        @Html.DisplayFor(m => m.FName)
+    <p />
+    <hr />
+    <p class="fieldLabel">
+        @*@Html.LabelFor(m => m.LName) :*@
+        <b class=" text-danger "> User Last Name  : </b>
+        @Html.DisplayFor(m => m.LName)
+    <p />
+    <hr />
+   
+    <hr />
+
+</fieldset>

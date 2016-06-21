@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    <title>PU Recipe Book - @ViewBag.Title Page</title>
+    <link href="/Content/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+    <link href="~/Content/blitzer/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+    <link href="~/Content/menue.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    @*  start slider script  *@
+
+    @* in mvc use this way to get path *@
+    @Url.Content("~/")
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+
+            images = new Array('/images/ProductA.jpg', '/images/ProductB.jpg');
+
+            cindex = 0;
+
+            setInterval(function () {
+                cindex++;
+                if (cindex == images.length) {
+                    cindex = 0;
+                }
+
+                $("#img").attr("src", images[cindex]);
+
+            }, 2000);
+        });
+    </script>
+
+
+    @RenderSection("styles", false)
+
+    @RenderSection("scripts", false)
+
+
+</head>
+<body>
+
+
+    <div>
+        @*  *@
+
+    <header>
+        <div class="headerWraper">
+            <div class="headerContents">
+                <div style="text-align:right; color:red;">@ViewBag.messag</div>
+                <div class="main">
+                    <div class="row-top">
+                        <h1>
+                            <a href="@Url.Action()">
+
+                                <img src="~/pictures/logo.jpg" alt="Logo" />
+                            </a>
+                        </h1>
+                        <nav>
+                            <ul class="sf-menu">
+                                <li class="active">
+                                
+                                    @Html.ActionLink("Log In", "Log", "User")
+
+                                </li>
+                                
+                                <li>
+                                    @Html.ActionLink("Create New User", "CreateUser", "User")
+                                   
+                                </li>
+
+                            </ul>
+                            @*<a href="contacts.html">Contacts</a>*@
+
+
+                        </nav>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+
+                @*<div style="width: 150px; float: left; color: red; padding: 5px; background-color: red; margin: 10px; text-align: center; border: 2px solid #a1a1a1;border-radius:25px; ">  @Html.ActionLink("Home", "Index", null, new { @class = "mpCreateLink" })  </div>
+                    <div style="width: 150px; float: left; color: red; padding: 5px; background-color: red; margin: 10px; text-align: center; border: 2px solid #a1a1a1;border-radius:25px; ">  @Html.ActionLink("Log In", "Log", null, new { @class = "mpCreateLink" })  </div>
+                    <div style="width: 150px; float: left; color: red; padding: 5px; background-color: red; margin: 10px; text-align: center; border: 2px solid #a1a1a1;border-radius:25px; ">  @Html.ActionLink(" View Profile", "ShowProfile", new { id = @ViewBag.id }, new { @class = "mpDetailsLink" })   </div>
+                    <div style="width: 150px; float: left; color: red; padding: 5px; background-color: red; margin: 10px; text-align: center; border: 2px solid #a1a1a1;border-radius:25px; ">  @Html.ActionLink("Add New", "Create", null, new { @class = "mpCreateLink" })  </div>
+                    <div style="width: 150px; float: left; color: red; padding: 5px; background-color: red; margin: 10px; text-align: center; border: 2px solid #a1a1a1;border-radius:25px; ">  @Html.ActionLink("Add New", "Create", null, new { @class = "mpCreateLink" })  </div>
+
+                    <div style="clear:both;"></div>*@
+            </div>
+            @*  <div style="width:50px;margin-left:1150px;"> @Html.Partial("_LoginPartialView")</div>*@
+
+        </div>
+    </header>
+</div>
+<div id="slider_container" style="width:980px;margin:auto;">
+
+    <div id="img_container">
+        <img src="/images/ProductA.jpg" id="img">
+
+    </div>
+</div>
+<article>
+    <div class="articleContents">
+
+    </div>
+</article>
+<div style="width:980px;margin:auto; ">
+    @RenderBody()
+</div>
+
+<hr />
+
+<footer>
+    <div class="footerWraper">
+        <div class="footerContents">
+            <nav>
+                <ul class="sf-menu">
+                    <li class="active">
+                    <li>
+                        @Html.ActionLink("Log In", "Log", "User")
+
+                    </li>
+               
+                    <li>
+                        @Html.ActionLink("Create New User", "CreateUser", "User")
+
+                    </li>
+                    </ul>
+
+</nav>
+            <p class="copyrightText">&copy;Recipe Book Lahore</p>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

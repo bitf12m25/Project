@@ -1,0 +1,80 @@
+﻿@using PU.Recipe.Entities
+@model PU.Recipe.Models.UserModel
+
+
+
+
+@{
+    ViewBag.Title = "";
+
+
+    Layout = "~/Views/Shared/_MainPage4LogIn.cshtml";
+
+
+}
+
+
+<script src="~/Scripts/NewFolder1/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.unobtrusive.min.js"></script>
+
+
+<link href="~/Content/main.css" rel="stylesheet" />
+<br />
+
+@using (Html.BeginForm("CreateUser", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "createForm" }))
+{
+    <fieldset>
+        <legend> Create a User </legend>
+        <p class="fieldLabel">
+            User Name 
+           
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:300px" })
+            
+            @Html.DisplayTextFor(m => m.UserName)
+          
+              @Html.ValidationMessageFor(m => m.UserName)
+        </p>
+        <p class="fieldLabel">
+            Password
+        </p>
+        <p class="fieldControl">
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </p>
+
+
+        <p class="fieldLabel">
+            Enter your First Name
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.FName, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.FName)
+        </p>
+        <p class="fieldLabel">
+            Enter your Last Name
+        </p>
+        <p class="fieldControl
+           ">
+            @Html.TextBoxFor(m => m.LName, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.LName)
+        </p>
+        <p class="fieldLabel">
+            Enter your Role
+        </p>
+
+        
+        <p class="fieldControl">
+        @*    @Html.DropDownListFor(m => m.Role, ViewBag.Categories as List<SelectListItem>, "Select Category")*@
+          @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(UTypeEnum))), " select User Role ", new { @class = "textbox", style = "width:300px" })
+          @*  @Html.TextBoxFor(m => m.Role, new { @class = "textbox", style = "width:300px" })*@
+            @Html.ValidationMessageFor(m => m.Role)
+            <br />
+           
+
+        </p>
+        <input type="submit" value="Create New a User" class="button1" />
+    </fieldset>
+}

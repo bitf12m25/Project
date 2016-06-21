@@ -1,0 +1,73 @@
+﻿@model PU.Recipe.Models.UserModel
+
+
+
+
+
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+<script src="~/Scripts/NewFolder1/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/main.css" rel="stylesheet" />
+
+<h2 style="width:200px; color:red; margin:auto;text-align:center;  "> </h2>
+
+<div style="width:500px; height:200px; margin:auto;">
+    <img src="~/pictures/login.png" width="500" height="200" />
+</div>
+
+<div style="color:red">@ViewBag.messag</div>
+
+<div style="width:650px; margin:auto; " >
+
+    @using (Html.BeginForm("LogIng", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "loginForm" }))
+{
+    <fieldset>
+        <legend> User LogIn </legend>
+
+        <p class="loginFieldControl">
+            Login Id:
+        </p>
+        <p class="loginFieldControl">
+            @* <input id="loginId" type="text" class="textbox" style="width: 180px" />*@
+            @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:250px" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </p>
+        <p class="loginFieldControl">
+            Password:
+        </p>
+        <p class="loginFieldControl">
+            @*   <input id="password" type="password" class="textbox" style="width: 180px" />*@
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:250px" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </p>
+        <p class="loginButtonWraper">
+
+            <input type="submit" value="Login" class="loginButton" />
+        </p>
+    </fieldset>
+
+}
+
+</div>

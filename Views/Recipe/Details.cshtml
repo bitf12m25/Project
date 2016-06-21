@@ -1,0 +1,123 @@
+﻿@model PU.Recipe.Models.RecipeDetailsModel
+
+@{
+
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Details</title>
+</head>
+
+
+<body>
+   
+
+    <div>
+        <h4>RecipeDetailsModel</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RecipeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RecipeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RecipeName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RecipeName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Discription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Discription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RecipeType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RecipeType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RecipeImageUrl)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RecipeImageUrl)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FootNote)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FootNote)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @if (Model.IngradieantList != null) { 
+        <ul class="list-group">
+            @foreach (var item in Model.IngradieantList)
+{
+    <li class="list-group-item list-group-item-warning glyphicon glyphicon-plus active" style=" width: 400px; float: left; background-color: #F0F0F0; color:black;">
+        @item.ingreName
+    </li>
+}
+        </ul>
+        }
+        <div style="clear:both"></div>
+    </p>
+       @if (Model.DisrectionList != null)
+{
+    <ol class="list-group" style=" font: italic 1em Georgia, Times, serif;
+  color: #999999;">
+
+        @foreach (var item1 in Model.DisrectionList)
+        {
+            <li class="list-group-item list-group-item-warning  active" style=" width: 400px; float: left; background-color: #F0F0F0; color:black;">
+                @item1.DirectionName
+            </li>
+        }
+    </ol>
+
+}
+
+
+</body>
+</html>

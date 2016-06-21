@@ -1,0 +1,242 @@
+﻿@model PU.Recipe.Models.FanClubRecipeAndVideoModel
+
+
+@{
+    int rowCount = 0;
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+
+<link href="~/Content/mproductlist.css" rel="stylesheet" />
+<link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/RecipeRow.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        $("#createLink").click(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    url: "/manageproducts/create",
+                    success: function (result) {
+                        $("#createDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#createDialog").dialog(
+                {
+                    title: "Create Product",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "left top",
+                        at: "right bottom",
+                        of: "#createLink"
+                    }
+                }
+            );
+
+
+        });
+
+        $(".mpDetailsLink").click(function (event) {
+            event.preventDefault();
+            var dLnk = $(this);
+            var myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl,
+                    success: function (result) {
+                        $("#detailsDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#detailsDialog").dialog(
+                {
+                    title: "Product Details",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "right top",
+                        at: "left bottom",
+                        of: dLnk
+                    }
+                }
+            );
+
+
+        });
+
+
+
+        $("#loginSection").hide();
+        $("#loginLink").click(function (event) {
+            event.preventDefault();
+            $("#loginSection").slideToggle(1000);
+        });
+
+        $(".textbox").blur(function () {
+            if ($(this).val() == 0) {
+                $(this).addClass("textboxError");
+            }
+            else {
+                $(this).removeClass("textboxError");
+            }
+        });
+
+        $("#loginForm").submit(function () {
+            var result = true;
+            if ($("#loginId").val() == 0) {
+                $("#loginId").addClass("textboxError");
+                result = false;
+            }
+            if ($("#password").val() == 0) {
+                $("#password").addClass("textboxError");
+                result = false;
+            }
+            return result;
+        });
+
+
+
+        $(".mpDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+
+        $(".mpAlternateDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+    });
+</script>
+
+
+
+<div>
+    <div style="float:left;width:800px; color:red; "> <h2 class="text-success">Welcome to Fan Club of @Model.userList.FName  </h2></div>
+    <div style="float:left;width:150px; "><input type="button" value="Follow Me" style="color:white; background-color:red; width:150px; height:50px;"/> </div>
+</div>
+<hr />
+
+<div style="float:left;width:800px; color:red; "> <h2 class="text-success">Recipes of  @Model.userList.FName  </h2></div>
+
+<div class="mpListWraper">
+    @*<div class="mpCaptionRow">
+
+            [ @Html.ActionLink("Add New", "Create", null, new { @class = "mpCreateLink", id = "createLink" }) ]
+        </div>*@
+    <div class="mpHeaderRow">
+        <div class="mpImageCol">
+            Image
+        </div>
+        <div class="mpNameCol">
+            Name
+        </div>
+        <div class="mpDescriptionCol">
+            Description
+        </div>
+        <div class="mpImageActions">
+            Actions
+        </div>
+    </div>
+
+</div>
+@if (Model.recipesList != null)
+{
+
+foreach (var item in Model.recipesList)
+{
+    string rowStyle = "mpDataRow";
+    rowCount++;
+    if (rowCount % 2 == 0)
+    {
+        rowStyle = "mpAlternateDataRow";
+    }
+
+    <div class='@rowStyle'>
+        <div class="mpImageCol">
+            @if (!string.IsNullOrEmpty(item.RecipeImageUrl))
+            {
+                <img src='@Url.Content(@item.RecipeImageUrl)' alt="image" class="mpImageIcon" />
+            }
+        </div>
+        <div class="mpNameCol">
+            @item.RecipeName
+        </div>
+        <div class="mpDescriptionCol">
+            @item.Discription
+
+
+        </div>
+
+        <div class="mpImageActions">
+            <div style="float:left; width:480px; color:red; ">
+                <form action="@Url.Action("Detail", "Recipe")" method="post">
+                    <p class="loginFieldControl">
+                        <input type="hidden" value=@item.RecipeID name="rid" />
+                        <input type="submit" value="Detail" class="loginButton" style="margin-left:20px" />
+                    </p>
+
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+}}
+
+<div style="clear:both;"></div>
+
+
+
+<div style="float:left;width:800px; color:red; "> <h2 class="text-success"> Videos of  @Model.userList.FName  </h2></div>
+
+@if (Model.VideoList != null)
+{
+    foreach (var item in Model.VideoList)
+    {
+
+
+        <div style="width:980px; margin:auto;">
+            <div style="width: 460px; float: left; padding: 20px;">
+                <embed width="400" height="200" src='@Url.Content(@item.URL)' />
+                <p style="text-align:center" class="text-info">@item.name</p>
+            </div>
+
+        </div>
+    }
+
+
+}
+
+<div style="clear:both;"></div>
+

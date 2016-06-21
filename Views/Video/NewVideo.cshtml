@@ -1,0 +1,55 @@
+﻿@model PU.Recipe.Models.VideoModel
+
+
+<script src="~/Scripts/NewFolder1/jquery-2.0.3.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.unobtrusive.min.js"></script>
+
+ @{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+
+
+@using (Html.BeginForm("NewVideo", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        <legend> insert A New Video </legend>
+        <p class="fieldLabel">
+            Video Name
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.name, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m=>m.name)
+        </p>
+        <p class="fieldLabel">
+            Video URL
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.URL, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m=>m.URL)
+        </p>
+
+        
+       
+        <input type="submit" value="Create New a Video" class="button1" />
+    </fieldset>
+}

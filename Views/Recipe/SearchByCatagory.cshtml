@@ -1,0 +1,350 @@
+﻿@using PU.Recipe.Models
+@model IEnumerable<PU.Recipe.Models.RecipeModel>
+
+@{
+    int rowCount = 0;
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+<link href="~/Content/mproductlist.css" rel="stylesheet" />
+<link href="~/Content/clientscriptingdemo.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/RecipeRow.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#createLink").click(function (event) {
+            event.preventDefault();
+            $.ajax(
+                {
+                    url: "/manageproducts/create",
+                    success: function (result) {
+                        $("#createDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#createDialog").dialog(
+                {
+                    title: "Create Product",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "left top",
+                        at: "right bottom",
+                        of: "#createLink"
+                    }
+                }
+            );
+
+
+        });
+
+        $(".mpDetailsLink").click(function (event) {
+            event.preventDefault();
+            var dLnk = $(this);
+            var myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl,
+                    success: function (result) {
+                        $("#detailsDialog").html(result);
+                    },
+                    failure: function () {
+                    }
+                }
+            );
+            $("#detailsDialog").dialog(
+                {
+                    title: "Product Details",
+                    modal: true,
+                    width: 600,
+                    position:
+                    {
+                        my: "right top",
+                        at: "left bottom",
+                        of: dLnk
+                    }
+                }
+            );
+
+
+        });
+
+
+
+        $("#loginSection").hide();
+        $("#loginLink").click(function (event) {
+            event.preventDefault();
+            $("#loginSection").slideToggle(1000);
+        });
+
+        $(".textbox").blur(function () {
+            if ($(this).val() == 0) {
+                $(this).addClass("textboxError");
+            }
+            else {
+                $(this).removeClass("textboxError");
+            }
+        });
+
+        $("#loginForm").submit(function () {
+            var result = true;
+            if ($("#loginId").val() == 0) {
+                $("#loginId").addClass("textboxError");
+                result = false;
+            }
+            if ($("#password").val() == 0) {
+                $("#password").addClass("textboxError");
+                result = false;
+            }
+            return result;
+        });
+
+
+
+        $(".mpDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+
+        $(".mpAlternateDataRow").hover(function () {
+            $(this).toggleClass("mpSelectedRow");
+        });
+    });
+</script>
+
+
+<div>
+
+
+    <div style="margin-top:30px;">
+  
+        <div style="float:left; width:480px; color:red;padding-left:200px; margin-top:25px; ">
+            <div id="loginLink" class="btn btn-lg btn-info"><a href="#" id="loginLink"> BROSE   </a></div>
+
+            <div style="width:450px;  " id="loginSection" class="loginSection">
+
+
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/1.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Chicken", "SearchByCatagory", new { Id = "Chicken" }) </div>
+                </div>
+
+
+                <div style="width:100px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/3.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Drinks", "SearchByCatagory", new { Id = "Drinks" })</div>
+
+                </div>
+
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/5.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Milk", "SearchByCatagory", new { Id = "Milk" }) </div>
+
+                </div>
+
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/vegetarian.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Vegetarian", "SearchByCatagory", new { Id = "Vegetarian" }) </div>
+                </div>
+
+
+                <div style="clear:both"></div>
+                <div style="margin-top:20px;"></div>
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/punjabi.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Punjabi Dish", "SearchByCatagory", new { Id = "Punjabi" }) </div>
+                </div>
+
+
+                <div style="width:100px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/Sindhi.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("sindhi Dish", "SearchByCatagory", new { Id = "sindhi" })</div>
+
+                </div>
+
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/Balochi.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("Balochi Dish", "SearchByCatagory", new { Id = "Balochi" }) </div>
+
+                </div>
+
+                <div style="width:90px; float:left; text-align:center">
+                    <div style="width:100px; height:70px"> <img src="~/pictures/RecipePic/kpk.jpg" width="70" height="70" class="img-circle" /></div>
+                    <div style="width:100px; height:30px">@Html.ActionLink("KPK Dish", "SearchByCatagory", new { Id = "KPK" }) </div>
+                </div>
+                <div style="clear:both"></div>
+
+
+                @*   @Html.ActionLink(" Update User", "#", new { id = @ViewBag.id }, new { @class = "mpDetailsLink" }) |*@
+
+                @*<form id="loginForm" action="#" method="post">
+                    <p class="loginFieldControl">
+                        Login Id:
+                    </p>
+                    <p class="loginFieldControl">
+                        <input id="loginId" type="text" class="textbox" style="width: 180px" />
+                    </p>
+                    <p class="loginFieldControl">
+                        Password:
+                    </p>
+                    <p class="loginFieldControl">
+                        <input id="password" type="password" class="textbox" style="width: 180px" />
+                    </p>
+                    <p class="loginButtonWraper">
+                        <input type="submit" value="Login" class="loginButton" />
+                    </p>
+                </form>*@
+            </div>
+        </div>
+
+    </div>
+    <div style="float:left; width:480px; color:red; ">
+        <form action="@Url.Action("Search", "Recipe")" method="post">
+            <p class="loginFieldControl">
+                <input type="text" name="qqq" class="textbox" style="width: 180px" />
+                <input type="submit" value="submit" class="loginButton" style="margin-left:20px" />
+            </p>
+
+
+        </form>
+    </div>
+
+
+    @* @Html.Partial("_search")*@
+
+</div>
+
+
+@*@foreach (var item in Model)
+    {
+
+    <div class="mainRecipe">
+        <div class="RecipeCol">
+            <div class="RecipePic">
+                <img src='@Url.Content(item.RecipeImageUrl)' alt="RecipePic"   />
+            </div>
+
+            <div class="RecipeName text-info">@item.RecipeName</div>
+            <div class="RecipeDiscription"> @item.Discription  </div>
+            <div> CataGory  @item.RecipeType</div>
+            <div class="RecipeMadeBy"> Madiha</div>
+            <div> </div>
+
+        </div>
+    </div>
+    }*@
+
+@*<div style="clear:both; "></div*@>
+@*@foreach (var item in Model)
+        {
+
+        <div class="RecipeRow">
+            <div class="RecipeCol1">
+               <div class="RecipeName"> @item.RecipeName</div>
+                <div class="RecipeDiscription"> Discription </div>
+                <div class="RecipeMadeBy"> Made By Madiha</div>
+
+            </div>
+            <div class="RecipeCol2">
+
+                <div class="RecipePic"> <img src='@Url.Content(item.RecipeImageUrl)' alt="RecipePic"></div>
+
+            </div>
+        </div>
+    }*@
+
+<div style="width:300px; margin:auto;">
+
+</div>
+<div class="mpListWraper">
+   
+    <div class="mpHeaderRow">
+        <div class="mpImageCol">
+            Image
+        </div>
+        <div class="mpNameCol">
+            Name
+        </div>
+        <div class="mpDescriptionCol">
+            Description
+        </div>
+        <div class="mpImageActions">
+            Actions
+        </div>
+    </div>
+
+</div>
+
+@if (Model != null)
+{ 
+    foreach (var item in Model)
+{
+    string rowStyle = "mpDataRow";
+    rowCount++;
+    if (rowCount % 2 == 0)
+    {
+        rowStyle = "mpAlternateDataRow";
+    }
+
+    <div class='@rowStyle'>
+        <div class="mpImageCol">
+            @if (!string.IsNullOrEmpty(item.RecipeImageUrl))
+            {
+                <img src='@Url.Content(@item.RecipeImageUrl)' alt="image" class="mpImageIcon" />
+            }
+        </div>
+        <div class="mpNameCol">
+            @item.RecipeName
+        </div>
+        <div class="mpDescriptionCol">
+            @item.Discription
+            
+
+        </div>
+
+        <div class="mpImageActions">
+            <div style="float:left; width:480px; color:red; ">
+                <form action="@Url.Action("Detail", "Recipe")" method="post">
+                    <p class="loginFieldControl">
+                        <input type="hidden" value=@item.RecipeID name="rid" />
+                        <input type="submit" value="Detail" class="loginButton" style="margin-left:20px" />
+                    </p>
+
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+}
+
+
+
+
+}
+<div style="clear:both;"></div>

@@ -1,0 +1,41 @@
+﻿
+ /********Login Demo**********/
+
+.loginStatusSection {
+}
+
+.loginLink {
+
+}
+
+.loginSection {
+    padding:20px;
+    background-color: #F0F0F0;
+    width:200px;
+    position:absolute;
+}
+
+.loginFieldLabel {
+    padding:0px 0px 2px 0px;
+    margin:0px;
+}
+
+.loginFieldControl {
+    padding:0px 0px 5px 0px;
+    margin:0px;
+}
+
+.loginButtonWraper {
+    padding:0px 0px 5px 0px;
+    margin:0px;
+}
+
+.loginButton {
+    border: 1px solid #00CC00;
+    padding: 2px;
+    background-color: #00CC00;
+    color: #FFFFFF;
+    width:70px;
+}
+
+

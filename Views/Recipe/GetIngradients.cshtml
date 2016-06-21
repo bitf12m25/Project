@@ -1,0 +1,25 @@
+﻿@using PU.Recipe.Models
+@model IEnumerable< PU.Recipe.Models.IngredientsModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetIngradients</title>
+</head>
+<body>
+    <div>
+        <h4>IngredientsModel</h4>
+        @foreach (var item in Model)
+            {
+                @item.ingreName <br />
+            }
+        
+</div>
+</body>
+</html>

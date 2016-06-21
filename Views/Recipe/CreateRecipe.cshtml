@@ -1,0 +1,117 @@
+﻿@model PU.Recipe.Models.RecipeModel
+
+@{
+    
+
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+<script src="~/Scripts/NewFolder1/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="~/Content/main.css" rel="stylesheet" />
+
+
+
+
+@using (Html.BeginForm("CreateRecipe", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data", id = "createRecipeForm" })) 
+{
+    
+    
+    <fieldset>
+        <legend> Create New Recipe </legend>
+        <p class="fieldLabel">
+            RECIPE NAME
+           
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.RecipeName, new { @class = "textbox", style = "width:300px" })
+            
+            @Html.DisplayTextFor(m => m.RecipeName)
+          
+              @Html.ValidationMessageFor(m => m.RecipeName)
+        </p>
+    
+        
+        <p class="fieldLabel">
+            RECIPE DISCRIPTION
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextAreaFor(m => m.Discription, new { @class = "textbox", style = "width:300px" })
+            
+
+            @Html.DisplayTextFor(m => m.Discription)
+
+            @Html.ValidationMessageFor(m => m.Discription)
+        </p>
+
+
+
+        <p class="fieldLabel">
+            RECIPE TYPE
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.RecipeType, new { @class = "textbox", style = "width:300px" })
+
+            @Html.DisplayTextFor(m => m.RecipeType)
+
+            @Html.ValidationMessageFor(m => m.RecipeType)
+        </p>
+
+
+        <p class="fieldLabel">
+            RECIPE FOOT NOTE
+
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.FootNote, new { @class = "textbox", style = "width:300px" })
+
+            @Html.DisplayTextFor(m => m.FootNote)
+
+            @Html.ValidationMessageFor(m => m.FootNote)
+        </p>
+
+
+        <p class="fieldControlWraper">
+
+            <input id="image1" name="productImage" type="file" required />
+            @Html.ValidationMessageFor(m => m.RecipeImageUrl)
+            @*<input id="image2" name="productImage" type="file" />
+            <input id="image3" name="productImage" type="file" />*@
+        </p>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.RecipeImageUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RecipeImageUrl)
+                @Html.ValidationMessageFor(model => model.RecipeImageUrl)
+            </div>
+        </div>*@
+
+        
+       
+
+        <input type="submit" value="Create New Recipe" class="button1" />
+    </fieldset>
+}
+
+

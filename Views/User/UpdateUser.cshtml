@@ -1,0 +1,85 @@
+﻿@model PU.Recipe.Models.UserModel
+
+
+@{
+    ViewBag.Title = "";
+    if (ViewBag.Roll == "Admn")
+    {
+        Layout = "~/Views/Shared/_MainPageAdmn.cshtml";
+    }
+    else if (ViewBag.Roll == "Chef")
+    {
+
+
+        Layout = "~/Views/Shared/_MainPage.cshtml";
+    }
+    else
+    {
+
+        Layout = "~/Views/Shared/_userMainPage.cshtml";
+    }
+
+}
+
+
+
+
+<script src="~/Scripts/NewFolder1/jquery-2.0.3.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.min.js"></script>
+<script src="~/Scripts/NewFolder1/jquery.validate.unobtrusive.min.js"></script>
+
+
+<link href="~/Content/main.css" rel="stylesheet" />
+<br />
+
+@using (Html.BeginForm("UpdateUser", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "createForm" }))
+{
+    <fieldset>
+        <legend> Update User </legend>
+        <p class="fieldLabel">
+            User Name
+            
+
+        </p>
+        <p class="fieldControl" style="color:red">
+
+         @*   @Html.DisplayFor(m => m.UserName)*@
+           @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", style = "width:300px" })
+            <br />
+
+            <b> * user name cannot change</b>
+          
+              @Html.ValidationMessageFor(m => m.UserName)
+        </p>
+        <hr />
+        <p class="fieldLabel">
+            Password
+        </p>
+        <p class="fieldControl">
+            @Html.PasswordFor(m => m.Password, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </p>
+
+        <p class="fieldLabel">
+            Enter your First Name
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.FName, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.FName)
+        </p>
+        <p class="fieldLabel">
+            Enter your Last Name
+        </p>
+        <p class="fieldControl">
+            @Html.TextBoxFor(m => m.LName, new { @class = "textbox", style = "width:300px" })
+            @Html.ValidationMessageFor(m => m.LName)
+        </p>
+        
+
+       
+
+
+        
+        <input type="submit" value="Update a  User" class="button1" />
+    </fieldset>
+}
